@@ -8,7 +8,6 @@
     <artifactId>yxutil</artifactId>
     <version>1.0</version>
 
-
     <dependencies>
 
         <!-- lombok-->
