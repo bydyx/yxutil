@@ -11,7 +11,6 @@ import java.util.Map;
  * @date 2019/10/18 14:27
  */
 public class ObjToStrUtil {
-
     public static String mapToXmlStr(Map map) {
         StringBuilder sb = new StringBuilder("<xml>");
         map.forEach((key, value) -> mapElementToXmlLabel(sb, key, value));
