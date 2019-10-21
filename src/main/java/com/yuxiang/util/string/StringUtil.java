@@ -1,8 +1,5 @@
 package com.yuxiang.util.string;
 
-import com.yuxiang.util.IntegerEnum;
-import com.yuxiang.util.string.exception.StringNotIntegerException;
-
 import java.util.UUID;
 import java.util.regex.Pattern;
 
@@ -15,32 +12,16 @@ public class StringUtil {
         return str == null || str.isEmpty();
     }
 
-    public static Integer toInteger(String str) {
-        try {
-            if (!StringUtil.isInteger(str)) {
-                throw new StringNotIntegerException();
-            }
-            return Integer.parseInt(str);
-        } catch (Exception e) {
-            throw new StringNotIntegerException(e);
-        }
-    }
-
+    private static Pattern pattern = Pattern.compile("^-\\+?\\d+$");
     public static boolean isInteger(String str) {
-        if (!RegularUtil.isInteger(str)) {
-            return false;
-        }
-        if (str.length() > IntegerEnum.INTEGER_MAX_LENGTH.value()) {
-            return false;
-        }
-        return true;
+        return pattern.matcher(str).matches();
     }
 
     public static String randomStr32() {
         return UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
     }
 
-    public static String objsToStr(Object... objs) {
+    public static String objsToStr(Object... objs){
         StringBuilder stringBuilder = new StringBuilder();
         for (final Object obj : objs) {
             stringBuilder.append(obj);
