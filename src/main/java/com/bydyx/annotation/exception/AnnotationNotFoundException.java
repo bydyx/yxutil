@@ -1,4 +1,4 @@
-package com.bydyx.util.annotation.exception;
+package com.bydyx.annotation.exception;
 
 /**
  * @author qiang.feng

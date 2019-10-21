@@ -1,15 +1,27 @@
-package com.bydyx.util.annotation;
+package com.bydyx.annotation;
 
-import com.bydyx.util.annotation.exception.AnnotationNotFoundException;
+import com.bydyx.annotation.exception.AnnotationNotFoundException;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.AnnotatedElement;
+import java.lang.reflect.Field;
 
 /**
  * @author bydyx
  * @date 2019/10/21 10:13
  */
 public class AnnotationUtil {
+
+    public static <T extends Annotation> boolean fieldHasAnnotation(Field field, Class<T> annotationClass) {
+        T annotation = field.getAnnotation(annotationClass);
+        return annotation != null;
+    }
+
+    public static <T extends Annotation> boolean objHasAnnotation(Object target, Class<T> annotationClass) {
+        Class<?> aClass = target.getClass();
+        return aClass.isAnnotationPresent(annotationClass);
+    }
+
     public static <T extends Annotation> T getAnnotation(Class target, Class<T> clazz) {
         Annotation annotation = target.getAnnotation(clazz);
         if (annotation == null) {
