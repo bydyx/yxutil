@@ -12,14 +12,12 @@ import java.util.Map;
  */
 public class ObjToStrUtil {
 
-    // map转xml字符串,只支持单层循环
     public static String mapToXmlStr(Map map) {
         StringBuilder sb = new StringBuilder("<xml>");
         map.forEach((key, value) -> mapElementToXmlLabel(sb, key, value));
         return sb.append("</xml>").toString();
     }
 
-    // map元素转Xml标签
     private static void mapElementToXmlLabel(StringBuilder sb, Object key, Object value) {
         sb.append("<").append(key).append(">");
         if (ClassUtil.isBaseType(value)) {
