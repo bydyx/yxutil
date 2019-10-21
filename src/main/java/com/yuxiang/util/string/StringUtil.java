@@ -12,19 +12,20 @@ public class StringUtil {
         return str == null || str.isEmpty();
     }
 
-    /**
-     * 判断字符串是否为int类型
-     */
-    private static Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
-
+    private static Pattern pattern = Pattern.compile("^-\\+?\\d+$");
     public static boolean isInteger(String str) {
         return pattern.matcher(str).matches();
     }
 
-    /**
-     * 生成随机字符串
-     */
     public static String randomStr32() {
-        return UUID.randomUUID().toString().replaceAll("-", "");
+        return UUID.randomUUID().toString().replaceAll("-", "").toUpperCase();
+    }
+
+    public static String objsToStr(Object... objs){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (final Object obj : objs) {
+            stringBuilder.append(obj);
+        }
+        return stringBuilder.toString();
     }
 }
