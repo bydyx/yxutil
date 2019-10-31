@@ -3,7 +3,6 @@ package com.bydyx.yxutil.string;
 import com.alibaba.fastjson.JSON;
 import com.bydyx.yxutil.IntegerEnum;
 import com.bydyx.yxutil.function.Excuter;
-import com.bydyx.yxutil.string.exception.StringNotIntegerException;
 
 import java.util.UUID;
 
@@ -13,9 +12,6 @@ import java.util.UUID;
  */
 public class StringUtil {
 
-    public static String parseStr(Object object){
-        return JSON.toJSONString(object);
-    }
     public static void isBlank(String str, Excuter excuter) {
         if (isBlank(str)) {
             excuter.excute();
@@ -23,17 +19,6 @@ public class StringUtil {
     }
     public static boolean isBlank(String str) {
         return str == null || str.isEmpty();
-    }
-
-    public static Integer toInteger(String str) {
-        try {
-            if (StringUtil.isInteger(str)) {
-                return Integer.parseInt(str);
-            }
-            throw new StringNotIntegerException();
-        } catch (Exception e) {
-            throw new StringNotIntegerException(e);
-        }
     }
 
     public static boolean isInteger(String str) {

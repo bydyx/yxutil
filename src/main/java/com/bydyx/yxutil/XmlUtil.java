@@ -1,20 +1,42 @@
 package com.bydyx.yxutil;
 
+import com.alibaba.fastjson.JSONObject;
+import com.bydyx.yxutil.reflex.ClassUtil;
+import com.bydyx.yxutil.string.JsonUtil;
+
+import java.util.Map;
+
 /**
  * @author bydyx
  * @date 2019/10/31 8:46
  */
 public class XmlUtil {
 
-    public static String valueToXmlValue(String value) {
+    public static String parseXml(Map<String, Object> map) {
+        StringBuilder sb = new StringBuilder("<xml>");
+        map.forEach((key, value) -> mapElementToXmlLabel(sb, key, value));
+        return sb.append("</xml>").toString();
+    }
+
+    private static void mapElementToXmlLabel(StringBuilder sb, String key, Object value) {
+        sb.append(XmlUtil.keyToStartLabel(key));
+        if (ClassUtil.isBaseType(value)) {
+            sb.append(XmlUtil.valueToXmlValue(value.toString()));
+        } else {
+            JsonUtil.objToJsonObj(value).forEach((s, o) -> mapElementToXmlLabel(sb, s, o));
+        }
+        sb.append(XmlUtil.keyToEndLabel(key));
+    }
+
+    private static String valueToXmlValue(String value) {
         return "<![CDATA[" + value + "]]>";
     }
 
-    public static String keyToStartLabel(String key) {
+    private static String keyToStartLabel(String key) {
         return "<" + key + ">";
     }
 
-    public static String keyToEndLabel(String key) {
+    private static String keyToEndLabel(String key) {
         return "</" + key + ">";
     }
 }

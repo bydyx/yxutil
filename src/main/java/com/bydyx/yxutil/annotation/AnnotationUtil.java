@@ -23,10 +23,14 @@ public class AnnotationUtil {
         return aClass.isAnnotationPresent(annotationClass);
     }
 
-    public static <T extends Annotation> T getAnnotation(Class target, Class<T> clazz) {
-        Annotation annotation = target.getAnnotation(clazz);
+    public static <T extends Annotation> T getAnnotation(Object target, Class<T> clazz) {
+        return getAnnotation(target.getClass(),clazz);
+    }
+
+    public static <T extends Annotation> T getAnnotation(Class targetClass, Class<T> clazz) {
+        Annotation annotation = targetClass.getAnnotation(clazz);
         if (annotation == null) {
-            throw new AnnotationNotFoundException(target.getName() + " 不存在: " + clazz.getName());
+            throw new AnnotationNotFoundException(targetClass.getName() + " 不存在: " + clazz.getName());
         }
         return clazz.cast(annotation);
     }

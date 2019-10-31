@@ -8,6 +8,11 @@ import com.alibaba.fastjson.JSONObject;
  * @date 2019/10/18 14:48
  */
 public class JsonUtil {
+
+    public static String parseJsonStr(Object object){
+        return JSON.toJSONString(object);
+    }
+
     public static JSONObject objToJsonObj(Object obj) {
         String str = JSON.toJSONString(obj);
         return JSON.parseObject(str);
