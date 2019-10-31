@@ -1,7 +1,7 @@
 package com.bydyx.yxutil.param.exception;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/10/21 9:39
  */
 public class FieldNullException extends RuntimeException {

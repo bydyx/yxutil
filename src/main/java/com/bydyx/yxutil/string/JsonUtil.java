@@ -9,8 +9,12 @@ import com.alibaba.fastjson.JSONObject;
  */
 public class JsonUtil {
     public static JSONObject objToJsonObj(Object obj) {
-        String str = JSONObject.toJSONString(obj);
+        String str = JSON.toJSONString(obj);
         return JSON.parseObject(str);
     }
 
+    public static <T> T strToObj(String str, Class<T> clazz) {
+        JSONObject jsonObject = JSON.parseObject(str);
+        return JSON.toJavaObject(jsonObject, clazz);
+    }
 }

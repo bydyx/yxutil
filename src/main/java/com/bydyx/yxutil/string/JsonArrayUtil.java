@@ -2,13 +2,11 @@ package com.bydyx.yxutil.string;
 
 import com.alibaba.fastjson.JSONArray;
 import com.bydyx.yxutil.string.exception.TextNotJsonArrayException;
-import com.bydyx.yxutil.reflex.ConvertUtil;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/10/18 15:55
  */
 public class JsonArrayUtil {
@@ -19,9 +17,7 @@ public class JsonArrayUtil {
     }
 
     public static <T> List<T> jsonArrayToList(JSONArray jsonArray, Class<T> clazz) {
-        return jsonArray.stream()
-                        .map(item -> ConvertUtil.typeCast(item, clazz))
-                        .collect(Collectors.toList());
+        return jsonArray.toJavaList(clazz);
     }
 
     public static JSONArray strToJsonArray(String arrayStr) {

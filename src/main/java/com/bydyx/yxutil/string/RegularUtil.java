@@ -3,7 +3,7 @@ package com.bydyx.yxutil.string;
 import java.util.regex.Pattern;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/10/21 11:18
  */
 public class RegularUtil {

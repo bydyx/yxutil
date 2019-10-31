@@ -8,7 +8,7 @@ import com.bydyx.yxutil.string.exception.StringNotIntegerException;
 import java.util.UUID;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/10/18 16:45
  */
 public class StringUtil {

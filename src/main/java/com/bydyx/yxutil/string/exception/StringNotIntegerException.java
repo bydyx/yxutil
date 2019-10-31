@@ -1,7 +1,7 @@
 package com.bydyx.yxutil.string.exception;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/10/21 11:06
  */
 public class StringNotIntegerException extends RuntimeException {
