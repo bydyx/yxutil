@@ -33,7 +33,7 @@ public class MybatisUtil {
         String sqlColumn = fieldNameList.stream()
                                         .reduce((prev, curr) -> prev + "," + curr)
                                         .orElseThrow(() -> new RuntimeException("NotFoundField"));
-        sql.append(sqlColumn).append(")\n(");
+        sql.append(sqlColumn).append(")\nVALUES (");
         String sqlValue = fieldNameList.stream()
                                        .map(item -> "#{" + item + "}")
                                        .reduce((prev, curr) -> prev + "," + curr)
