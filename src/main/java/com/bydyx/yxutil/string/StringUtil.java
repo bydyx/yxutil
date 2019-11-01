@@ -17,6 +17,7 @@ public class StringUtil {
             excuter.excute();
         }
     }
+
     public static boolean isBlank(String str) {
         return str == null || str.isEmpty();
     }
@@ -31,16 +32,27 @@ public class StringUtil {
         return true;
     }
 
+    public static String lastCharToEnd(String str, String ch) {
+        int endIndex = str.lastIndexOf(ch);
+        if (endIndex == -1) {
+            return str;
+        }
+        return str.substring(endIndex);
+    }
+
+    public static String lastCharToEndNoCh(String str, String ch) {
+        int endIndex = str.lastIndexOf(ch);
+        if (endIndex++ == -1) {
+            return str;
+        }
+        if(endIndex == str.length()){
+            return "";
+        }
+        return str.substring(endIndex);
+    }
+
     public static String randomStr32() {
         String uuid = UUID.randomUUID().toString();
         return uuid.replaceAll("-", "").toUpperCase();
-    }
-
-    public static String objsToStr(Object... objs) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (final Object obj : objs) {
-            stringBuilder.append(obj);
-        }
-        return stringBuilder.toString();
     }
 }

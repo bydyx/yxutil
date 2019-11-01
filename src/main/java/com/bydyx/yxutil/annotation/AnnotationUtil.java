@@ -14,8 +14,13 @@ public class AnnotationUtil {
 
     public static <T extends Annotation> boolean fieldHasAnnotation(Field field, Class<T> annotationClass) {
         field.setAccessible(true);
-        T annotation = field.getAnnotation(annotationClass);
-        return annotation != null;
+        T fieldAnnotation = getFieldAnnotation(field, annotationClass);
+        return fieldAnnotation != null;
+    }
+
+    public static <T extends Annotation> T getFieldAnnotation(Field field, Class<T> annotationClass) {
+        field.setAccessible(true);
+        return field.getAnnotation(annotationClass);
     }
 
     public static <T extends Annotation> boolean objHasAnnotation(Object target, Class<T> annotationClass) {
@@ -24,13 +29,13 @@ public class AnnotationUtil {
     }
 
     public static <T extends Annotation> T getAnnotation(Object target, Class<T> clazz) {
-        return getAnnotation(target.getClass(),clazz);
+        return getAnnotation(target.getClass(), clazz);
     }
 
     public static <T extends Annotation> T getAnnotation(Class targetClass, Class<T> clazz) {
         Annotation annotation = targetClass.getAnnotation(clazz);
         if (annotation == null) {
-            throw new AnnotationNotFoundException(targetClass.getName() + " 不存在: " + clazz.getName());
+            throw new AnnotationNotFoundException(targetClass.getName() + " 不存在注解: " + clazz.getName());
         }
         return clazz.cast(annotation);
     }
@@ -38,7 +43,7 @@ public class AnnotationUtil {
     public static <T extends Annotation> T getAnnotation(AnnotatedElement target, Class<T> clazz) {
         T annotation = target.getAnnotation(clazz);
         if (annotation == null) {
-            throw new AnnotationNotFoundException(target.getClass().getName() + " 不存在: " + clazz.getName());
+            throw new AnnotationNotFoundException(target.getClass().getName() + " 不存在注解: " + clazz.getName());
         }
         return annotation;
     }
