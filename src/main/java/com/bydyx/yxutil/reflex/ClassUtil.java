@@ -46,7 +46,8 @@ public class ClassUtil {
         return isLangPackage(typeName) || clazz.isPrimitive();
     }
 
+    //如果包名是java.lang.**则返回true
     public static boolean isLangPackage(String name) {
-        return name.indexOf("java.lang.") != 0;
+        return name.indexOf("java.lang.") == 0;
     }
 }

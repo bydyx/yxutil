@@ -1,7 +1,6 @@
 package com.bydyx.yxutil.string;
 
-import com.alibaba.fastjson.JSON;
-import com.bydyx.yxutil.IntegerEnum;
+import com.bydyx.yxutil.Dictionaries;
 import com.bydyx.yxutil.function.Excuter;
 
 import java.util.UUID;
@@ -26,7 +25,7 @@ public class StringUtil {
         if (!RegularUtil.isInteger(str)) {
             return false;
         }
-        if (str.length() > IntegerEnum.INTEGER_MAX_LENGTH.value()) {
+        if (str.length() > Dictionaries.IntegerMaxLength) {
             return false;
         }
         return true;
