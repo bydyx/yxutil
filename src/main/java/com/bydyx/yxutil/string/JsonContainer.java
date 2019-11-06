@@ -9,9 +9,15 @@ import com.alibaba.fastjson.JSONObject;
 public class JsonContainer {
     JSONObject data = new JSONObject();
 
+    public static JSONObject createSingleContainer(String key, Object value){
+        JsonContainer jsonContainer = new JsonContainer(key, value);
+        return jsonContainer.data;
+    }
+
     public JsonContainer(String key, Object value) {
         data.put(key, value);
     }
+
     public void add(String key, Object value){
         data.put(key, value);
     }

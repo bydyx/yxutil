@@ -84,16 +84,15 @@ public class TimeUtil {
     }
 
     public static Date add(TimeType timeType, int num) {
-        Date date = new Date();
-        add(date, timeType, num);
-        return date;
+        return add(new Date(), timeType, num);
     }
 
     //时间操作,type:Calendar.
-    public static void add(Date date, TimeType timeType, int num) {
+    public static Date add(Date date, TimeType timeType, int num) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(timeType.getValue(), num);
+        return calendar.getTime();
     }
 
 }
