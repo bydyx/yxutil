@@ -2,7 +2,6 @@ package com.bydyx.yxutil.time;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Date;
 
 /**
  * @author qiang.feng
@@ -20,6 +19,7 @@ public class Timer {
         return timer;
     }
 
+    //返回毫秒差值
     public Long end() {
         Instant startTimeInstant = Instant.parse(startTime.toString());
         Instant endTimeInstant = Instant.now();

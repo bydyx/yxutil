@@ -1,4 +1,4 @@
-package com.bydyx.yxutil.string;
+package com.bydyx.yxutil.json;
 
 import com.alibaba.fastjson.JSONObject;
 

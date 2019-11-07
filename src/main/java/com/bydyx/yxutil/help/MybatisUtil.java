@@ -1,14 +1,12 @@
-package com.bydyx.yxutil.lazy;
+package com.bydyx.yxutil.help;
 
-import com.bydyx.yxutil.lazy.help.NoRequire;
-import com.bydyx.yxutil.lazy.help.Require;
+import com.bydyx.yxutil.help.model.NoRequire;
 import com.bydyx.yxutil.reflex.ClassUtil;
 import com.bydyx.yxutil.string.StringUtil;
 
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * 字符串工具,不应在程序中调用,只适合在test中调用

@@ -1,4 +1,4 @@
-package com.bydyx.yxutil.string;
+package com.bydyx.yxutil.json;
 
 import com.alibaba.fastjson.JSONArray;
 import com.bydyx.yxutil.string.exception.TextNotJsonArrayException;
