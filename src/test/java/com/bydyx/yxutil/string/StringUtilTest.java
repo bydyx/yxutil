@@ -10,6 +10,20 @@ public class StringUtilTest {
     }
 
     @Test
+    public void testCreateVerifyCode() {
+        for (int i = 0; i < 10; i++) {
+            String result = StringUtil.createVerifyCode();
+            System.out.println(result);
+        }
+    }
+
+    @Test
+    public void testLastCharToStart() {
+        String result = StringUtil.lastCharToStart("xxx.yyy.zzz", ".");
+        System.out.println(result);
+    }
+
+    @Test
     public void testIsInteger() throws Exception {
         Assert.assertEquals(true, StringUtil.isInteger("-5"));
         Assert.assertEquals(true, StringUtil.isInteger("5"));
