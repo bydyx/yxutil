@@ -10,10 +10,11 @@
 
     <properties>
         <jwt.version>3.2.0</jwt.version>
-        <fastjosn.version>1.2.25</fastjosn.version>
-        <lombok.version>1.18.10</lombok.version>
         <junit.version>4.12</junit.version>
+        <dom4j.version>1.6.1</dom4j.version>
         <guava.version>28.0-jre</guava.version>
+        <lombok.version>1.18.10</lombok.version>
+        <fastjosn.version>1.2.25</fastjosn.version>
     </properties>
 
     <dependencies>
@@ -52,6 +53,11 @@
             <version>${jwt.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>${dom4j.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

@@ -26,14 +26,5 @@ public class ImgUtilTest {
     public void after() throws Exception {
     }
 
-    /**
-     * Method: createBufferedImage(String randomText)
-     */
-    @Test
-    public void testCreateBufferedImage() throws Exception {
-        String verifyCode = StringUtil.createVerifyCode();
-        BufferedImage verifyImg = ImgUtil.createBufferedImage(verifyCode);
-        ImageIO.write(verifyImg, "png", new File("C:\\usr\\test\\" + verifyCode + ".png"));
-    }
 
 } 

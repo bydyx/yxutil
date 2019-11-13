@@ -14,7 +14,10 @@ import java.lang.reflect.Field;
  */
 public class ParamUtil {
 
-    //检查时字段默认加@CanNull的检查
+    /**
+     * 检查时字段默认加@CanNull的检查
+     * @param target
+     */
     public static void objFieldsCanNull(Object target){
         Field[] fields = FieldUtil.getAllField(target);
         for (final Field field : fields) {

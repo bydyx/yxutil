@@ -2,7 +2,7 @@ package com.bydyx.yxutil.string;
 
 import com.bydyx.yxutil.time.TimeUtil;
 import com.bydyx.yxutil.time.entity.TimeFormat;
-import com.bydyx.yxutil.time.entity.TimeType;
+import com.bydyx.yxutil.time.entity.TimeUnit;
 import org.junit.Test;
 
 import java.util.Date;
@@ -17,7 +17,7 @@ public class JwtUtilTest {
         String secret = "xx";
         Map<String, String> infoMap = new HashMap<>();
         infoMap.put("userName", userName);
-        Date expirationDate = TimeUtil.add(TimeType.MINUTE,20);
+        Date expirationDate = TimeUtil.add(TimeUnit.MINUTE,20);
 
         System.out.println(TimeUtil.dateTimeFormat(expirationDate, TimeFormat.HyyyyMMddHHmmss));
         String jwtToken = JwtUtil.createToken(infoMap, secret, expirationDate);

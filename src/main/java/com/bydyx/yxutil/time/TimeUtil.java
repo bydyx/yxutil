@@ -1,10 +1,11 @@
 package com.bydyx.yxutil.time;
 
-import com.bydyx.yxutil.Dictionaries;
+import com.bydyx.yxutil.Constant;
 import com.bydyx.yxutil.string.StringUtil;
 import com.bydyx.yxutil.time.entity.TimeFormat;
-import com.bydyx.yxutil.time.entity.TimeType;
+import com.bydyx.yxutil.time.entity.TimeUnit;
 import com.bydyx.yxutil.time.exception.TimeStampFormatException;
+import com.google.common.math.IntMath;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -63,7 +64,7 @@ public class TimeUtil {
     public static String completionTimeStamp(String timeStamp) {
         checkTimeStamp(timeStamp);
         int length = timeStamp.length();
-        int offset = Dictionaries.TimeStampMaxLength - length;
+        int offset = Constant.TimeStampMaxLength - length;
         for (int i = 0; i < offset; i++) {
             timeStamp = timeStamp + "0";
         }
@@ -75,21 +76,34 @@ public class TimeUtil {
             throw new TimeStampFormatException();
         }
         int length = timeStamp.length();
-        if (length < Dictionaries.TimeStampMinLength || length > Dictionaries.TimeStampMaxLength) {
+        if (length < Constant.TimeStampMinLength || length > Constant.TimeStampMaxLength) {
             throw new TimeStampFormatException("时间戳位数不符合要求");
         }
     }
 
-    public static Date add(TimeType timeType, int num) {
-        return add(new Date(), timeType, num);
+    public static Date add(TimeUnit timeUnit, int num) {
+        return add(new Date(), timeUnit, num);
     }
 
     //时间操作,type:Calendar.
-    public static Date add(Date date, TimeType timeType, int num) {
+    public static Date add(Date date, TimeUnit timeUnit, int num) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        calendar.add(timeType.getValue(), num);
+        calendar.add(timeUnit.getValue(), num);
         return calendar.getTime();
     }
 
+    /**
+     * 返回秒数
+     *
+     * @param num      数量
+     * @param timeUnit 单位,暂时只有时分秒
+     * @return
+     */
+    public static int getSecond(int num, TimeUnit timeUnit) {
+        // 时间级别计算,为秒时level = 0;
+        int level = 13 - TimeUnit.HOUR.getValue();
+        int unitSeconds = IntMath.pow(60, level);
+        return unitSeconds * num;
+    }
 }

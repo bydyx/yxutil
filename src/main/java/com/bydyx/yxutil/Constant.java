@@ -1,10 +1,11 @@
 package com.bydyx.yxutil;
 
 /**
+ * 配置
  * @author bydyx
  * @date 2019/10/21 11:09
  */
-public class Dictionaries {
+public class Constant {
 
     public static final Integer IntegerMaxLength = 10;
     // 时间戳最小长度
