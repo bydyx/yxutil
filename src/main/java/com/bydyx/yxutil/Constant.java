@@ -1,5 +1,6 @@
 package com.bydyx.yxutil;
 
+
 /**
  * 配置
  * @author bydyx
@@ -12,5 +13,4 @@ public class Constant {
     public static final Integer TimeStampMinLength = 8;
     // 时间戳最大长度
     public static final Integer TimeStampMaxLength = 13;
-
 }

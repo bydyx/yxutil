@@ -66,7 +66,6 @@ public class PayUtil {
         return payResult;
     }
 
-
     /**
      * wx 生成签名
      *
