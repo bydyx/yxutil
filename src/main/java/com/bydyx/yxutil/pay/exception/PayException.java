@@ -1,7 +1,7 @@
 package com.bydyx.yxutil.pay.exception;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/13 15:27
  */
 public class PayException extends Exception{

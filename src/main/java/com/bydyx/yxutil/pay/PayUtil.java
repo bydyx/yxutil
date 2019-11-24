@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/12 16:41
  */
 public class PayUtil {
@@ -45,7 +45,7 @@ public class PayUtil {
      *                    2.无需权限,无参数限制
      *                    3.接收时解析body即可
      * @date 2019/11/13 11:07
-     * @author qiang.feng
+     * @author bydyx
      */
     public static PayParam createWxUnifiedOrderParam(String appid, TradeType tradeType, String body, Integer totalFee, String notifyUrl, String initiatorIp) {
         Merchant merchant = merchantMap.get(appid);

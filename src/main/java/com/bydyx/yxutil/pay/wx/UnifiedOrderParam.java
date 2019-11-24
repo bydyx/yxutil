@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/12 15:54
  */
 @Data
@@ -101,7 +101,7 @@ public class UnifiedOrderParam implements PayParam, PayRequest {
      * @param num      时间单位的数量
      * @param timeUnit 时间单位,限制为时分秒
      * @date 2019/11/13 11:26
-     * @author qiang.feng
+     * @author bydyx
      */
     @Override
     public void setEndDate(int num, TimeUnit timeUnit) {

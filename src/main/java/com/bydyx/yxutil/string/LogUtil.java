@@ -1,7 +1,7 @@
 package com.bydyx.yxutil.string;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/4 13:37
  */
 public class LogUtil {

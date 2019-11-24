@@ -4,7 +4,7 @@ package com.bydyx;
 import com.bydyx.yxutil.wechat.office.MessageTemplate;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/15 9:28
  */
 public class test {

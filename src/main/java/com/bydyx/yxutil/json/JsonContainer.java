@@ -3,7 +3,7 @@ package com.bydyx.yxutil.json;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/10/30 11:24
  */
 public class JsonContainer {

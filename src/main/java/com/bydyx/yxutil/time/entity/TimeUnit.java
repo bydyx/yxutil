@@ -3,7 +3,7 @@ package com.bydyx.yxutil.time.entity;
 import java.util.Calendar;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/5 17:13
  */
 public enum TimeUnit {

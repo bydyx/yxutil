@@ -1,7 +1,7 @@
 package com.bydyx.yxutil.param.exception;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/5 16:52
  */
 public class ParamWrongException extends RuntimeException {

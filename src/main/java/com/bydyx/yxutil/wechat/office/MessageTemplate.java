@@ -9,7 +9,7 @@ import java.util.*;
 /**
  * 微信模板消息参数类
  *
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/15 8:40
  */
 @Data
@@ -37,7 +37,7 @@ public class MessageTemplate {
      * @param toUser      接收人在appid对应公众号的openid
      * @param templateId  模板消息id
      * @date 2019/11/15 10:04
-     * @author qiang.feng
+     * @author bydyx
      */
     public MessageTemplate(String accessToken, String appId, String color, String toUser, String templateId, String firstValue) {
         this.appId = appId;

@@ -3,7 +3,7 @@ package com.bydyx.yxutil.pay;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/13 15:19
  */
 public interface PayResult {

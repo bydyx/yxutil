@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * 支付结果
  *
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/13 13:59
  */
 @Data

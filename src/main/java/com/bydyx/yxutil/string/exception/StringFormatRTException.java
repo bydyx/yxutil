@@ -1,7 +1,7 @@
 package com.bydyx.yxutil.string.exception;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/13 9:01
  */
 public class StringFormatRTException extends RuntimeException {

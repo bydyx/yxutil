@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  * 字符串工具,不应在程序中调用,只适合在test中调用
  * 例如 生成mybatis的insert语句
  *
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/1 16:25
  */
 public class MybatisUtil {

@@ -6,7 +6,7 @@ import com.bydyx.yxutil.pay.PayResult;
 import lombok.Data;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/13 16:52
  */
 @Data

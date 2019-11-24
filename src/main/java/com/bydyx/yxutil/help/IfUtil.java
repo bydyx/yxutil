@@ -3,7 +3,7 @@ package com.bydyx.yxutil.help;
 import com.bydyx.yxutil.function.Excuter;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/5 16:56
  */
 public class IfUtil {

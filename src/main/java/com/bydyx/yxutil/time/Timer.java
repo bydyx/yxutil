@@ -4,7 +4,7 @@ import java.time.Duration;
 import java.time.Instant;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/6 17:35
  */
 public class Timer {

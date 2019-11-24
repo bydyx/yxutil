@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/6 8:43
  */
 public class JwtUtil {

@@ -1,7 +1,7 @@
 package com.bydyx.yxutil.reflex.exception;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/12 17:24
  */
 public class ReflexRTException extends RuntimeException {

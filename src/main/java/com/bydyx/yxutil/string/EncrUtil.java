@@ -3,7 +3,7 @@ package com.bydyx.yxutil.string;
 import java.security.MessageDigest;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/6 11:02
  */
 public class EncrUtil {

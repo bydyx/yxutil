@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * 微信商户
  *
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/13 10:26
  */
 @Data

@@ -1,7 +1,7 @@
 package com.bydyx.yxutil.string.exception;
 
 /**
- * @author qiang.feng
+ * @author bydyx
  * @date 2019/11/6 9:12
  */
 public class JwtException extends Exception {
