@@ -1,4 +1,4 @@
-package com.bydyx.yxutil.annotation;
+package com.bydyx.yxutil.pay;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

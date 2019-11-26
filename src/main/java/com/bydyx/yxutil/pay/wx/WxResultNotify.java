@@ -1,7 +1,7 @@
 package com.bydyx.yxutil.pay.wx;
 
 import com.alibaba.fastjson.JSONObject;
-import com.bydyx.yxutil.annotation.NoSerialize;
+import com.bydyx.yxutil.pay.NoSerialize;
 import com.bydyx.yxutil.file.XmlUtil;
 import com.bydyx.yxutil.json.JsonUtil;
 import com.bydyx.yxutil.pay.PayResult;

@@ -9,6 +9,7 @@ public enum  TimeFormat {
     yyyyMMddHHmmss("yyyyMMddHHmmss"),
     HyyyyMMddHHmmss("yyyy-MM-dd HH:mm:ss"),
     XyyyyMMddHHmmss("yyyy/MM/dd HH:mm:ss"),
+    HHyyyyMMddHHmmss("yyyy-MM-dd HH-mm-ss"),
     KyyyyMMddHHmmss("yyyy MM dd HH:mm:ss");
 
     String format;

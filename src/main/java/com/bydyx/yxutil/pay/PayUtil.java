@@ -1,7 +1,6 @@
 package com.bydyx.yxutil.pay;
 
 import com.bydyx.yxutil.annotation.AnnotationUtil;
-import com.bydyx.yxutil.annotation.NoSerialize;
 import com.bydyx.yxutil.file.XmlUtil;
 import com.bydyx.yxutil.pay.wx.*;
 import com.bydyx.yxutil.reflex.ClassUtil;
