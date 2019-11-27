@@ -4,6 +4,7 @@ import com.bydyx.yxutil.annotation.AnnotationUtil;
 import com.bydyx.yxutil.param.annotation.CanNull;
 import com.bydyx.yxutil.param.annotation.NotNull;
 import com.bydyx.yxutil.param.exception.FieldNullException;
+import com.bydyx.yxutil.param.exception.ParamWrongException;
 import com.bydyx.yxutil.reflex.FieldUtil;
 
 import java.lang.reflect.Field;
@@ -51,9 +52,11 @@ public class ParamUtil {
         }
     }
 
-    public static void checkObjIsNull(Object obj) {
-        if (obj == null) {
-            throw new NullPointerException();
+    public static void checkObjIsNull(Object... objs) {
+        for (final Object obj : objs) {
+            if (obj == null) {
+                throw new ParamWrongException();
+            }
         }
     }
 }

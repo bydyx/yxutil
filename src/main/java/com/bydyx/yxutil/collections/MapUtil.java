@@ -12,6 +12,14 @@ import java.util.Map;
  */
 public class MapUtil {
 
+    public static String toGetParam(Map<String, Object> params) {
+        return "?" + params.keySet()
+                           .stream()
+                           .map(key -> key + "=" + params.get(key))
+                           .reduce((c, p) -> c + "&" + p)
+                           .orElse("");
+    }
+
     public static String mapToXml(Map<String, Object> map) {
         StringBuilder sb = new StringBuilder("<xml>");
         map.forEach((key, value) -> mapElementToXmlLabel(sb, key, value));

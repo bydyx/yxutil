@@ -3,6 +3,7 @@ package com.bydyx.yxutil.string;
 import java.security.MessageDigest;
 
 /**
+ * 加密工具
  * @author bydyx
  * @date 2019/11/6 11:02
  */

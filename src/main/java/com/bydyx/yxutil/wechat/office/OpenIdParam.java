@@ -2,7 +2,6 @@ package com.bydyx.yxutil.wechat.office;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.bydyx.yxutil.request.Request;
 import lombok.Data;
 
 /**
@@ -10,14 +9,13 @@ import lombok.Data;
  * @date 2019/11/24 21:09
  */
 @Data
-public class OpenIdParam implements Request {
+public class OpenIdParam {
     private static final String url = "https://api.weixin.qq.com/sns/jscode2session";
 
     String appid;
     String secret;
     String js_code;
 
-    @Override
     public String getUrl() {
         StringBuilder stringBuilder = new StringBuilder(url);
         stringBuilder.append("?appid=" + appid);
@@ -33,12 +31,10 @@ public class OpenIdParam implements Request {
         this.js_code = js_code;
     }
 
-    @Override
     public String getParam() {
         throw new RuntimeException("This is a GET Request!");
     }
 
-    @Override
     public Object getResultObj(String resultStr) {
         JSONObject jsonObject = JSON.parseObject(resultStr);
         return jsonObject;
