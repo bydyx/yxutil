@@ -56,7 +56,7 @@ public class EncrUtil {
     }
 
     // AES加密
-    public static String encryptData(String data, String aesKey) {
+    public static String aesEncode(String data, String aesKey) {
         try {
             Cipher cipher = getCipher(Cipher.ENCRYPT_MODE, aesKey);
             byte[] bytes = data.getBytes();
@@ -68,7 +68,7 @@ public class EncrUtil {
     }
 
     //AES解密
-    public static String decryptData(String data, String aesKey) {
+    public static String aesDeCode(String data, String aesKey) {
         try {
             Cipher cipher = getCipher(Cipher.DECRYPT_MODE, aesKey);
             byte[] bytes = new BASE64Decoder().decodeBuffer(data);

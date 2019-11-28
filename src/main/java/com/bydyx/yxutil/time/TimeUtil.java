@@ -7,6 +7,7 @@ import com.bydyx.yxutil.time.entity.TimeUnit;
 import com.bydyx.yxutil.time.exception.TimeStampFormatException;
 import com.google.common.math.IntMath;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -85,7 +86,7 @@ public class TimeUtil {
         return add(new Date(), timeUnit, num);
     }
 
-    //时间操作,type:Calendar.
+    //时间操作
     public static Date add(Date date, TimeUnit timeUnit, int num) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
@@ -102,8 +103,16 @@ public class TimeUtil {
      */
     public static int getSecond(int num, TimeUnit timeUnit) {
         // 时间级别计算,为秒时level = 0;
-        int level = 13 - TimeUnit.HOUR.getValue();
+        int level = 13 - timeUnit.getValue();
         int unitSeconds = IntMath.pow(60, level);
         return unitSeconds * num;
+    }
+
+    public static Date parseDateStr(String dateStr){
+        try {
+            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dateStr);
+        } catch (ParseException e) {
+            throw new RuntimeException("日期格式错误!");
+        }
     }
 }

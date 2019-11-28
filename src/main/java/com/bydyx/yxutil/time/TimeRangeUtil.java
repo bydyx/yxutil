@@ -27,6 +27,24 @@ public class TimeRangeUtil {
     }
 
     /**
+     * 判断两个时间是否在同一天内
+     * @date   2019/11/28 13:57
+     * @author qiang.feng
+     */
+    public static boolean inRangeByDay(Date startTime, Date checkTime) {
+        if (!inRange(startTime, checkTime, TimeUnit.YEAR)) {
+            return false;
+        }
+        if (!inRange(startTime, checkTime, TimeUnit.MONTH)) {
+            return false;
+        }
+        if (!inRange(startTime, checkTime, TimeUnit.DATE)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * 返回当前时间对应单位的值
      * 例如 date = " 2019/11/26 9:54 ",timeUnit = HOUR -> 9
      *

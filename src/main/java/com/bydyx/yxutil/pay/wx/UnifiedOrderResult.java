@@ -3,7 +3,11 @@ package com.bydyx.yxutil.pay.wx;
 import com.alibaba.fastjson.JSONObject;
 import com.bydyx.yxutil.json.JsonUtil;
 import com.bydyx.yxutil.pay.PayResult;
+import com.bydyx.yxutil.pay.PayUtil;
 import lombok.Data;
+
+import java.lang.reflect.Field;
+import java.util.List;
 
 /**
  * @author bydyx
@@ -24,6 +28,13 @@ public class UnifiedOrderResult implements PayResult {
     String trade_type;
     String prepay_id;
     String code_url;
+
+    public String getSecondarySign() {
+        Merchant merchant = PayUtil.getMerchantByAppid(appid);
+        List<Field> fieldList = PayUtil.getParams(this);
+        return PayUtil.createSign(this, fieldList, merchant.getMchKey());
+    }
+
 
     @Override
     public boolean isSuccess() {
