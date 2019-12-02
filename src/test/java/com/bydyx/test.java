@@ -1,7 +1,7 @@
 package com.bydyx;
 
 
-import com.bydyx.yxutil.wechat.office.MessageTemplate;
+import com.bydyx.yxutil.wechat.office.MsgTemplate;
 
 /**
  * @author bydyx
@@ -14,14 +14,14 @@ public class test {
         String color = "red";
         String toUser = "oo3UrtxtrkGHnvfYQbFvpNIjJcjs";
         String templateId = "CTy_ZyDwfUExamtqQepHIEk17DXpcI3jSo8lPaNtwtE";
-        MessageTemplate mst = new MessageTemplate(assessToken, appid, color, toUser, templateId, "流量充值未到账");
+        MsgTemplate mst = new MsgTemplate(assessToken, appid, color, toUser, templateId, "流量充值未到账");
         mst.setFirstColor("red");
         mst.addKeyWord("2019111416341132231");
         mst.addKeyWord("冯强");
         mst.addKeyWord("流量充值未到账");
         mst.addKeyWord("2019-11-14 16:39");
         System.out.println(mst.getUrl());
-        System.out.println(mst.getRequestBody());
+        System.out.println(mst.getParam());
     }
 
 }

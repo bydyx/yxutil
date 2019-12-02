@@ -4,6 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.Verification;
 import com.bydyx.yxutil.string.entity.JwtToken;
@@ -15,6 +16,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author bydyx
@@ -55,6 +57,16 @@ public class JwtUtil {
         } catch (IllegalArgumentException | UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * 获得token中的信息
+     */
+    public static Map<String, String> getValues(String token) {
+        Map<String, Claim> claims = JWT.decode(token).getClaims();
+        return claims.keySet()
+                     .stream()
+                     .collect(Collectors.toMap((key) -> key, (key) -> claims.get(key).asString()));
     }
 
     /**

@@ -12,12 +12,18 @@ import java.util.Map;
 public class JwtUtilTest {
 
     @Test
+    public void testJwt() {
+        String token= "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImhwYyIsImV4cCI6MTU3NTI2NjA1NH0.ZT2Bh2EVcOG-dkcIqUbJFIqP7ThHiM_P2r3-RJyU_xg";
+//        JwtUtil.getValue()
+    }
+
+    @Test
     public void testCreateJwtToken() throws Exception {
         String userName = "xx";
         String secret = "xx";
         Map<String, String> infoMap = new HashMap<>();
         infoMap.put("userName", userName);
-        Date expirationDate = TimeUtil.add(TimeUnit.MINUTE,20);
+        Date expirationDate = TimeUtil.add(TimeUnit.MINUTE, 20);
 
         System.out.println(TimeUtil.dateTimeFormat(expirationDate, TimeFormat.HyyyyMMddHHmmss));
         String jwtToken = JwtUtil.createToken(infoMap, secret, expirationDate);

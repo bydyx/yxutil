@@ -2,9 +2,11 @@ package com.bydyx.yxutil.reflex;
 
 import com.bydyx.yxutil.annotation.AnnotationUtil;
 import com.bydyx.yxutil.reflex.exception.ReflexRTException;
+import com.bydyx.yxutil.request.Method;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -74,6 +76,29 @@ public class ClassUtil {
         return fieldList;
     }
 
+    public static java.lang.reflect.Method getMethod(Object target, String methodName, Class... paramClazzs) {
+        Class<?> clazz = target.getClass();
+        return getMethod(clazz, methodName, paramClazzs);
+    }
+
+    public static java.lang.reflect.Method getMethod(Class clazz, String methodName, Class... paramClazzs) {
+        try {
+            java.lang.reflect.Method method = clazz.getMethod(methodName, paramClazzs);
+            method.setAccessible(true);
+            return method;
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    public static Object methodInvoke(java.lang.reflect.Method method, Object target, Object... params) {
+        try {
+            return  method.invoke(target, params);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     // 是否为基本数据类型 | lang下类型
     public static boolean isBaseType(Object obj) {
         if (obj == null) {
@@ -84,7 +109,14 @@ public class ClassUtil {
 
     public static boolean isBaseType(Class clazz) {
         String typeName = clazz.getTypeName();
-        return isLangPackage(typeName) || clazz.isPrimitive();
+        return isLangPackage(typeName) || clazz.isPrimitive() || isBaseType2(typeName);
+    }
+
+    private static boolean isBaseType2(String typeName) {
+        if (typeName.equals("java.util.Date")) {
+            return true;
+        }
+        return false;
     }
 
     //如果包名是java.lang.**则返回true

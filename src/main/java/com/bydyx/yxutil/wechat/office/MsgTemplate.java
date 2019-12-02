@@ -1,6 +1,8 @@
 package com.bydyx.yxutil.wechat.office;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bydyx.yxutil.request.Method;
+import com.bydyx.yxutil.request.Request;
 import com.bydyx.yxutil.string.StringUtil;
 import lombok.Data;
 
@@ -13,7 +15,7 @@ import java.util.*;
  * @date 2019/11/15 8:40
  */
 @Data
-public class MessageTemplate {
+public class MsgTemplate implements Request {
     private static final String url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=";
     String accessToken;
 
@@ -30,6 +32,53 @@ public class MessageTemplate {
     String keyWordColor;
     final List<String> keyWordList = new ArrayList<>();
 
+    @Override
+    public String getUrl() {
+        return url + accessToken;
+    }
+
+    @Override
+    public Method getMethod() {
+        return Method.POST;
+    }
+
+    @Override
+    public String getParam() {
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("touser", getToUser());
+        requestBody.put("data", getContent());
+        requestBody.put("template_id", getTemplateId());
+        requestBody.put("miniprogram", getMiniProgram());
+        requestBody.put("url", getForwardUrl());
+
+        return requestBody.toJSONString();
+    }
+
+    @Override
+    public void addParam(String key, Object value) {
+
+    }
+
+    /**
+     * 返回结果 {
+     * "errcode":0,
+     * "errmsg":"ok",
+     * "msgid":200228332
+     * }
+     *
+     * @date 2019/11/29 14:20
+     * @author qiang.feng
+     */
+    @Override
+    public JSONObject getResultObj(String resultStr) {
+        JSONObject result = JSONObject.parseObject(resultStr);
+        Integer errCode = result.getInteger("errcode");
+        if (!errCode.equals(0)) {
+            throw new RuntimeException("发送模板失败!" + errCode + "原因:" + result.getString("errmsg"));
+        }
+        return result;
+    }
+
     /**
      * @param accessToken 微信token
      * @param appId       公众号id
@@ -39,28 +88,13 @@ public class MessageTemplate {
      * @date 2019/11/15 10:04
      * @author bydyx
      */
-    public MessageTemplate(String accessToken, String appId, String color, String toUser, String templateId, String firstValue) {
+    public MsgTemplate(String accessToken, String appId, String color, String toUser, String templateId, String firstValue) {
         this.appId = appId;
         this.color = color;
         this.toUser = toUser;
         this.templateId = templateId;
         this.firstValue = firstValue;
         this.accessToken = accessToken;
-    }
-
-    public String getUrl() {
-        return url + accessToken;
-    }
-
-    public String getRequestBody() {
-        JSONObject requestBody = new JSONObject();
-        requestBody.put("touser", getToUser());
-        requestBody.put("data", getContent());
-        requestBody.put("template_id", getTemplateId());
-        requestBody.put("miniprogram", getMiniProgram());
-        requestBody.put("url", getForwardUrl());
-
-        return requestBody.toJSONString();
     }
 
     private Map<String, String> getMiniProgram() {

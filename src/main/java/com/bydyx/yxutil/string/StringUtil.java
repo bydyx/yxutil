@@ -113,7 +113,32 @@ public class StringUtil {
         }
         return str;
     }
+    /**
+     * if s1 > s2 1
+     * else if s1 < s2 1
+     * else 0
+     */
+    public static int compareString(String s1, String s2) {
+        if (s1.length() < s2.length()) {
+            return compareStringIter(s1, s2);
+        } else {
+            return -compareStringIter(s2, s1);
+        }
+    }
 
+    public static int compareStringIter(String s1, String s2) {
+        for (int i = 0; i < s1.length(); i++) {
+            if (s1.charAt(i) < s2.charAt(i)) {
+                return -1;
+            } else if (s1.charAt(i) > s2.charAt(i)) {
+                return 1;
+            }
+        }
+        if (s1.length() == s2.length()) {
+            return 0;
+        }
+        return -1;
+    }
 
     public static String randomStr32() {
         String uuid = UUID.randomUUID().toString();

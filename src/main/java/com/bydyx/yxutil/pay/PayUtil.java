@@ -26,7 +26,11 @@ public class PayUtil {
     }
 
     public static Merchant getMerchantByAppid(String appid) {
-        return merchantMap.get(appid);
+        Merchant merchant = merchantMap.get(appid);
+        if (merchant == null) {
+            throw new RuntimeException("不存在的appid:" + appid);
+        }
+        return merchant;
     }
 
     /**
@@ -79,11 +83,22 @@ public class PayUtil {
                         .orElseThrow(() -> new RuntimeException("生成签名异常,没有传参!"));
     }
 
+    public static String createSign(Map<String, Object> data, String mchKey) {
+        return data.keySet()
+                   .stream()
+                   .sorted((s1, s2) -> StringUtil.compareString(s1, s2))
+                   .map(key -> key + "=" + data.get(key))
+                   .reduce((perv, curr) -> perv + "&" + curr)
+                   .map(str -> str + "&key=" + mchKey)
+                   .map(StringUtil::md5)
+                   .orElseThrow(() -> new RuntimeException("生成签名异常,没有传参!"));
+    }
+
     public static String createXmlString(Object payRequest, List<Field> fieldList, String sign) {
         return fieldList.stream()
                         .map(item -> XmlUtil.toXmlLabel(payRequest, item))
                         .reduce((p, r) -> p + r)
-                        .map(str -> "<xml>" + str + "<sign>" + sign + "</sign></xml>")
+                        .map(str -> "<xml>" + str + "<sign><![CDATA[" + sign + "]]></sign></xml>")
                         .orElseThrow(() -> new RuntimeException("空的参数对象"));
     }
 

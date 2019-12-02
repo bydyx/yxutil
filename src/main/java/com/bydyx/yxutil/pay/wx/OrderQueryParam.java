@@ -1,7 +1,6 @@
 package com.bydyx.yxutil.pay.wx;
 
 import com.bydyx.yxutil.file.XmlUtil;
-import com.bydyx.yxutil.json.JsonUtil;
 import com.bydyx.yxutil.pay.PayRequest;
 import com.bydyx.yxutil.pay.PayResult;
 import com.bydyx.yxutil.pay.PayUtil;

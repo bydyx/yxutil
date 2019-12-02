@@ -7,6 +7,7 @@ import com.bydyx.yxutil.pay.PayRequest;
 import com.bydyx.yxutil.pay.PayParam;
 import com.bydyx.yxutil.pay.PayResult;
 import com.bydyx.yxutil.pay.PayUtil;
+import com.bydyx.yxutil.pay.exception.PayRTException;
 import com.bydyx.yxutil.string.StringUtil;
 import com.bydyx.yxutil.time.TimeUtil;
 import com.bydyx.yxutil.time.entity.TimeFormat;
@@ -44,6 +45,7 @@ public class UnifiedOrderParam implements PayParam, PayRequest {
     String notify_url;
     @NotNull
     String trade_type;
+    @NoSerialize
     String sign;
 
     String device_info;
@@ -145,7 +147,11 @@ public class UnifiedOrderParam implements PayParam, PayRequest {
     }
 
     @Override
-    public PayResult getResultObj(String result) {
-        return XmlUtil.xmlStr2Json(result).toJavaObject(UnifiedOrderResult.class);
+    public PayResult getResultObj(String resultStr) {
+        UnifiedOrderResult result = XmlUtil.xmlStr2Json(resultStr).toJavaObject(UnifiedOrderResult.class);
+        if (!result.isSuccess()) {
+            throw new PayRTException("预下单失败:"+result.getReturn_msg());
+        }
+        return result;
     }
 }

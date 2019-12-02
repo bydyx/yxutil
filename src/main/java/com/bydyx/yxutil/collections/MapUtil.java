@@ -4,6 +4,8 @@ import com.bydyx.yxutil.file.XmlUtil;
 import com.bydyx.yxutil.json.JsonUtil;
 import com.bydyx.yxutil.reflex.ClassUtil;
 
+import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -37,4 +39,34 @@ public class MapUtil {
         sb.append(XmlUtil.createEndLabel(key));
     }
 
+    /**
+     * 对象转map
+     *
+     * @date 2019/7/25 10:42
+     * @author FigureFragrance
+     */
+    public static Map<String, Object> obj2Map(Object obj) {
+        Map<String, Object> map = new HashMap<>();
+        if (null == obj) {
+            return map;
+        }
+        try {
+            Field[] declaredFields = obj.getClass().getDeclaredFields();
+            for (Field field : declaredFields) {
+                field.setAccessible(true);
+                if (ClassUtil.isBaseType(field.getType())) {
+                    map.put(field.getName(), field.get(obj));
+                } else {
+                    Object fieldValue = field.get(obj);
+                    if (fieldValue != null && !fieldValue.equals(obj)) {
+                        Map<String, Object> cMap = obj2Map(fieldValue);
+                        map.put(field.getName(), cMap);
+                    }
+                }
+            }
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException("obj2Map");
+        }
+        return map;
+    }
 }

@@ -39,6 +39,10 @@ public class TimeUtil {
         return Long.toString(System.currentTimeMillis()).substring(0, length);
     }
 
+    public static String getCurrentDateStr(){
+        return dateTimeFormat(new Date(), TimeFormat.HyyyyMMddHHmmss);
+    }
+
     public static String getDateTime(TimeFormat format) {
         return dateTimeFormat(new Date(), format);
     }
