@@ -40,6 +40,15 @@ public class AnnotationUtil {
         return clazz.cast(annotation);
     }
 
+    public static <T extends Annotation> boolean annotatedElementHasAnnotation(AnnotatedElement target, Class<T> clazz) {
+        try {
+            getAnnotation(target, clazz);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public static <T extends Annotation> T getAnnotation(AnnotatedElement target, Class<T> clazz) {
         T annotation = target.getAnnotation(clazz);
         if (annotation == null) {

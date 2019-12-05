@@ -24,10 +24,35 @@ public class StringUtil {
         return sb.toString();
     }
 
-    public static void isBlank(String str, Excuter excuter) {
-        if (isBlank(str)) {
-            excuter.excute();
+    public static boolean isBlank(String str) {
+        return str == null || str.isEmpty();
+    }
+
+    /**
+     * 都为空->true
+     * @date   2019/12/2 15:26
+     * @author qiang.feng
+     */
+    public static boolean isBlankAnd(String... strs) {
+        for (final String str : strs) {
+            if (!isBlank(str)) {
+                return false;
+            }
         }
+        return true;
+    }
+    /**
+     * 有一个为空->true
+     * @date   2019/12/2 15:26
+     * @author qiang.feng
+     */
+    public static boolean isBlankOr(String... strs) {
+        for (final String str : strs) {
+            if (isBlank(str)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static String md5(String text) {
@@ -42,10 +67,6 @@ public class StringUtil {
         String time = TimeUtil.getDateTime(TimeFormat.yyyyMMddHHmmss);
         String s = String.valueOf(IntegerUtil.random(10000, 99999));
         return time + s;
-    }
-
-    public static boolean isBlank(String str) {
-        return str == null || str.isEmpty();
     }
 
     public static boolean isInteger(String str) {
@@ -100,6 +121,7 @@ public class StringUtil {
 
     /**
      * 清除下划线,并把下一个字符转为大写
+     *
      * @param str
      * @return
      */
@@ -113,6 +135,7 @@ public class StringUtil {
         }
         return str;
     }
+
     /**
      * if s1 > s2 1
      * else if s1 < s2 1

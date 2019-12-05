@@ -17,6 +17,7 @@ public class JsonRequest implements Request {
     String url;
     Method method;
     Map<String, Object> params = new HashMap<>();
+    ResultPro resultPro = (str) -> JSONObject.parseObject(str);
 
     @Override
     public Method getMethod() {
@@ -50,7 +51,7 @@ public class JsonRequest implements Request {
         return MapUtil.toGetParam(params);
     }
 
-    public Object getParam(String key){
+    public Object getParam(String key) {
         return params.get(key);
     }
 
@@ -61,7 +62,6 @@ public class JsonRequest implements Request {
 
     @Override
     public JSONObject getResultObj(String resultStr) {
-        JSONObject result = JSON.parseObject(resultStr);
-        return result;
+        return (JSONObject) resultPro.getResultObj(resultStr);
     }
 }

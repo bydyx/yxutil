@@ -3,11 +3,11 @@ package com.bydyx.yxutil.pay.wx;
 import com.bydyx.yxutil.pay.NoSerialize;
 import com.bydyx.yxutil.file.XmlUtil;
 import com.bydyx.yxutil.param.annotation.NotNull;
-import com.bydyx.yxutil.pay.PayRequest;
 import com.bydyx.yxutil.pay.PayParam;
 import com.bydyx.yxutil.pay.PayResult;
 import com.bydyx.yxutil.pay.PayUtil;
 import com.bydyx.yxutil.pay.exception.PayRTException;
+import com.bydyx.yxutil.request.Method;
 import com.bydyx.yxutil.string.StringUtil;
 import com.bydyx.yxutil.time.TimeUtil;
 import com.bydyx.yxutil.time.entity.TimeFormat;
@@ -23,7 +23,7 @@ import java.util.List;
  * @date 2019/11/12 15:54
  */
 @Data
-public class UnifiedOrderParam implements PayParam, PayRequest {
+public class UnifiedOrderParam implements PayParam {
     @NoSerialize
     public final static String url = "https://api.mch.weixin.qq.com/pay/unifiedorder";
 
@@ -87,7 +87,7 @@ public class UnifiedOrderParam implements PayParam, PayRequest {
     }
 
     @Override
-    public String createRequestParam() {
+    public String getParam() {
         return this.toXmlString();
     }
 
@@ -153,5 +153,15 @@ public class UnifiedOrderParam implements PayParam, PayRequest {
             throw new PayRTException("预下单失败:"+result.getReturn_msg());
         }
         return result;
+    }
+
+    @Override
+    public Method getMethod() {
+        return Method.POST;
+    }
+
+    @Override
+    public void addParam(String key, Object value) {
+
     }
 }

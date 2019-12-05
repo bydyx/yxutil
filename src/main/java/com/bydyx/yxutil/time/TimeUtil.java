@@ -39,7 +39,7 @@ public class TimeUtil {
         return Long.toString(System.currentTimeMillis()).substring(0, length);
     }
 
-    public static String getCurrentDateStr(){
+    public static String getCurrentDateStr() {
         return dateTimeFormat(new Date(), TimeFormat.HyyyyMMddHHmmss);
     }
 
@@ -48,8 +48,12 @@ public class TimeUtil {
     }
 
     /**
-     * 返回当前时间
+     * Date->时间格式的str
      */
+    public static String dateTimeFormat(Date date) {
+        return dateTimeFormat(date, TimeFormat.HyyyyMMddHHmmss);
+    }
+
     public static String dateTimeFormat(Date date, TimeFormat format) {
         SimpleDateFormat sdf = new SimpleDateFormat(format.getFormat());
         String result = sdf.format(date);
@@ -112,7 +116,7 @@ public class TimeUtil {
         return unitSeconds * num;
     }
 
-    public static Date parseDateStr(String dateStr){
+    public static Date parseDateStr(String dateStr) {
         try {
             return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(dateStr);
         } catch (ParseException e) {

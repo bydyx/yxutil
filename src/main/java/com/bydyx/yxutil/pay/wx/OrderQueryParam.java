@@ -1,9 +1,10 @@
 package com.bydyx.yxutil.pay.wx;
 
 import com.bydyx.yxutil.file.XmlUtil;
-import com.bydyx.yxutil.pay.PayRequest;
 import com.bydyx.yxutil.pay.PayResult;
 import com.bydyx.yxutil.pay.PayUtil;
+import com.bydyx.yxutil.request.Method;
+import com.bydyx.yxutil.request.Request;
 import com.bydyx.yxutil.string.StringUtil;
 import lombok.Data;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * @date 2019/11/13 16:20
  */
 @Data
-public class OrderQueryParam implements PayRequest {
+public class OrderQueryParam implements Request {
     String appid;
     String mch_id;
     String out_trade_no;
@@ -37,7 +38,7 @@ public class OrderQueryParam implements PayRequest {
     }
 
     @Override
-    public String createRequestParam() {
+    public String getParam() {
         List<Field> fieldList = PayUtil.getParams(this);
         Merchant merchant = PayUtil.getMerchantByAppid(appid);
         this.sign = PayUtil.createSign(this, fieldList, merchant.getMchKey());
@@ -45,7 +46,17 @@ public class OrderQueryParam implements PayRequest {
     }
 
     @Override
+    public void addParam(String key, Object value) {
+
+    }
+
+    @Override
     public String getUrl() {
         return "https://api.mch.weixin.qq.com/pay/orderquery";
+    }
+
+    @Override
+    public Method getMethod() {
+        return Method.POST;
     }
 }

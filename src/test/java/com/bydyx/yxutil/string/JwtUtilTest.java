@@ -13,8 +13,8 @@ public class JwtUtilTest {
 
     @Test
     public void testJwt() {
-        String token= "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImhwYyIsImV4cCI6MTU3NTI2NjA1NH0.ZT2Bh2EVcOG-dkcIqUbJFIqP7ThHiM_P2r3-RJyU_xg";
-//        JwtUtil.getValue()
+        String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyTmFtZSI6ImhwYyIsImV4cCI6MTU3NTAxMTE3MH0.3JUBD2vHp1LsLAVkx6lNToApCLDRzaAqxkMkatiKmxE";
+        JwtUtil.getValues(token).forEach((s, s2) -> System.out.println(s + ":" + s2));
     }
 
     @Test

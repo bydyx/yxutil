@@ -4,6 +4,7 @@ import com.bydyx.yxutil.annotation.AnnotationUtil;
 import com.bydyx.yxutil.file.XmlUtil;
 import com.bydyx.yxutil.pay.wx.*;
 import com.bydyx.yxutil.reflex.ClassUtil;
+import com.bydyx.yxutil.request.Request;
 import com.bydyx.yxutil.string.StringUtil;
 
 import java.lang.reflect.Field;
@@ -55,9 +56,9 @@ public class PayUtil {
         return new UnifiedOrderParam(appid, merchant.getMchid(), body, totalFee, notifyUrl, initiatorIp, merchant.getMchKey(), tradeType);
     }
 
-    public static PayRequest createWxOrderQueryParam(String appid, String orderNo) {
+    public static Request createWxOrderQueryParam(String appid, String orderNo) {
         Merchant merchant = merchantMap.get(appid);
-        PayRequest orderQueryParam = new OrderQueryParam(appid, merchant.getMchid(), orderNo);
+        Request orderQueryParam = new OrderQueryParam(appid, merchant.getMchid(), orderNo);
         return orderQueryParam;
     }
 

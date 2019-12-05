@@ -1,5 +1,6 @@
 package com.bydyx.yxutil.pay;
 
+import com.bydyx.yxutil.request.Request;
 import com.bydyx.yxutil.time.entity.TimeUnit;
 
 /**
@@ -7,7 +8,7 @@ import com.bydyx.yxutil.time.entity.TimeUnit;
  *
  * @author bydyx
  */
-public interface PayParam extends PayRequest {
+public interface PayParam extends Request {
 
     /**
      * 附加数据,自定义参数,大小127个字符

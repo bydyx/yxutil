@@ -66,7 +66,16 @@ public class JwtUtil {
         Map<String, Claim> claims = JWT.decode(token).getClaims();
         return claims.keySet()
                      .stream()
-                     .collect(Collectors.toMap((key) -> key, (key) -> claims.get(key).asString()));
+                     .collect(Collectors.toMap((key) -> key, (key) -> claimToString(key, claims.get(key))));
+    }
+
+    public static String claimToString(String key, Claim claim) {
+        switch (key) {
+            case "exp":
+                return TimeUtil.dateTimeFormat(claim.asDate());
+            default:
+                return claim.asString();
+        }
     }
 
     /**
