@@ -38,7 +38,7 @@ public class PropertiesUtil {
             properties.load(ins);
             ins.close();
             return properties;
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new FileRTException(e.getMessage());
         }
     }

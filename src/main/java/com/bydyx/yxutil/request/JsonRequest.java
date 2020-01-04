@@ -16,8 +16,19 @@ import java.util.Map;
 public class JsonRequest implements Request {
     String url;
     Method method;
+    OtherToken otherToken;
     Map<String, Object> params = new HashMap<>();
     ResultPro resultPro = (str) -> JSONObject.parseObject(str);
+
+    @Override
+    public void setOtherToken(OtherToken otherToken) {
+        this.otherToken = otherToken;
+    }
+
+    @Override
+    public OtherToken getOtherToken() {
+        return otherToken;
+    }
 
     @Override
     public Method getMethod() {
@@ -48,7 +59,9 @@ public class JsonRequest implements Request {
         if (getMethod().equals(Method.POST)) {
             return JSON.toJSONString(params);
         }
-        return MapUtil.toGetParam(params);
+        String s = getUrl().contains("?") ? "&" : "?";
+        String getParams = MapUtil.toGetParam(params);
+        return s + getParams;
     }
 
     public Object getParam(String key) {
@@ -61,7 +74,7 @@ public class JsonRequest implements Request {
     }
 
     @Override
-    public JSONObject getResultObj(String resultStr) {
-        return (JSONObject) resultPro.getResultObj(resultStr);
+    public Object getResultObj(String resultStr) {
+        return resultPro.getResultObj(resultStr);
     }
 }

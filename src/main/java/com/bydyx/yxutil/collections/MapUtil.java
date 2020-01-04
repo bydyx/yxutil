@@ -15,7 +15,7 @@ import java.util.Map;
 public class MapUtil {
 
     public static String toGetParam(Map<String, Object> params) {
-        return "?" + params.keySet()
+        return  params.keySet()
                            .stream()
                            .map(key -> key + "=" + params.get(key))
                            .reduce((c, p) -> c + "&" + p)

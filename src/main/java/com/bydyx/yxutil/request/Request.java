@@ -12,4 +12,11 @@ public interface Request {
     void addParam(String key, Object value);
 
     Object getResultObj(String resultStr);
+
+    default void setOtherToken(OtherToken otherToken) {
+    }
+
+    default OtherToken getOtherToken() {
+        throw new RuntimeException("没有设置token!");
+    }
 }

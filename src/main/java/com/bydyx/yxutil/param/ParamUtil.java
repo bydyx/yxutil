@@ -17,14 +17,16 @@ public class ParamUtil {
 
     /**
      * 检查时字段默认加@CanNull的检查
+     *
      * @param target
      */
-    public static void objFieldsCanNull(Object target){
+    public static void objFieldsCanNull(Object target) {
         Field[] fields = FieldUtil.getAllField(target);
         for (final Field field : fields) {
             ParamUtil.checkFieldCanNull(target, field);
         }
     }
+
     //检查时字段默认加@NotNull的检查
     public static void objFieldsNotNull(Object target) {
         Field[] fields = FieldUtil.getAllField(target);
@@ -33,15 +35,15 @@ public class ParamUtil {
         }
     }
 
-    private static void checkFieldCanNull(Object target, Field field){
+    private static void checkFieldCanNull(Object target, Field field) {
         if (AnnotationUtil.fieldHasAnnotation(field, NotNull.class)) {
-            ParamUtil.checkFieldValueNotNull(field,target);
+            ParamUtil.checkFieldValueNotNull(field, target);
         }
     }
 
     private static void checkFieldNotNull(Object target, Field field) {
         if (!AnnotationUtil.fieldHasAnnotation(field, CanNull.class)) {
-            ParamUtil.checkFieldValueNotNull(field,target);
+            ParamUtil.checkFieldValueNotNull(field, target);
         }
     }
 
@@ -58,5 +60,13 @@ public class ParamUtil {
                 throw new ParamWrongException();
             }
         }
+    }
+
+    public static Object dynamicParameterFirst(Object... objects) {
+        if (objects.length == 0) {
+            Object object = objects[0];
+            return object;
+        }
+        throw new ParamWrongException("动态参数列表为空!");
     }
 }
