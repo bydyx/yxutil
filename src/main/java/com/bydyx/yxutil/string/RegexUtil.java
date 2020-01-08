@@ -11,10 +11,16 @@ public class RegexUtil {
     public final static Pattern numberPattern = Pattern.compile("^-?\\d+(\\.\\d+)?$");
 
     public static boolean isInteger(String str) {
+        if(StringUtil.isBlank(str)){
+            return false;
+        }
         return IntegerPattern.matcher(str).matches();
     }
 
     public static boolean isNumber(String str) {
+        if(StringUtil.isBlank(str)){
+            return false;
+        }
         return numberPattern.matcher(str).matches();
     }
 }
