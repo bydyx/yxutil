@@ -1,37 +1,23 @@
 package com.bydyx.yxutil.database.jdbc;
 
+import lombok.Getter;
+
 /**
  * @author qiang.feng
  * @date 2020/1/8 11:35
  */
+@Getter
 public enum DataBaseType {
-    MYSQL,
-    PGSQL,
+    PGSQL(5432, "org.postgresql.Driver", "jdbc:postgresql"),
+    MYSQL(3306, "com.mysql.cj.jdbc.Driver", "jdbc:mysql:jdbc:mysql"),
     ;
+    Integer port;
+    String driverUrl;
+    String jdbcUrlPrefix;
 
-    public DataBaseConfig getConfig(String dataBaseUrl, String dataBaseName, String userName, String passWord) {
-        DataBaseConfig dataBaseConfig = new DataBaseConfig();
-        dataBaseConfig.setDataBaseUrl(dataBaseUrl);
-        dataBaseConfig.setDataBaseName(dataBaseName);
-        dataBaseConfig.setUserName(userName);
-        dataBaseConfig.setPassWord(passWord);
-        switch (this) {
-            case MYSQL:
-                return getMySqlConfig(dataBaseConfig);
-            case PGSQL:
-                return getPgSqlConfig(dataBaseConfig);
-            default:
-                throw new RuntimeException("不可能");
-        }
-    }
-
-    private DataBaseConfig getPgSqlConfig(DataBaseConfig dataBaseConfig) {
-        dataBaseConfig.setDriver("org.postgresql.Driver");
-        dataBaseConfig.setJdbcUrlPrefix("jdbc:postgresql");
-        return dataBaseConfig;
-    }
-
-    private DataBaseConfig getMySqlConfig(DataBaseConfig dataBaseConfig) {
-        throw new RuntimeException("暂未实现");
+    DataBaseType(Integer port, String driverUrl, String jdbcUrlPrefix) {
+        this.port = port;
+        this.driverUrl = driverUrl;
+        this.jdbcUrlPrefix = jdbcUrlPrefix;
     }
 }

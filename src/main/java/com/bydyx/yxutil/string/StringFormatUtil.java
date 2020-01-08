@@ -339,7 +339,8 @@ public class StringFormatUtil {
 			Method getMethod;
 			try {
 				pd = new PropertyDescriptor(propName, obj.getClass());
-				getMethod = pd.getReadMethod();// 获得get方法
+				getMethod = pd.getReadMethod();
+				// 获得get方法
 				valObject = getMethod.invoke(obj);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
