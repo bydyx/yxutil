@@ -9,7 +9,7 @@ import java.util.List;
  * @date 2020/1/9 11:23
  */
 @Data
-public class ClassFileTemplate implements Template{
+public class ClassFileTemplate implements Template {
     String packageStr;
     ModuleType moduleType;
     List<String> importList;
@@ -17,13 +17,21 @@ public class ClassFileTemplate implements Template{
     List<MethodTemplate> methodTemplateList;
     List<VariableTemplate> variableTemplateList;
 
-    @Override
-    public List<String> getTemplateLineList() {
-        return null;
+    CrudConfig crudConfig;
+
+    public ClassFileTemplate(ModuleType moduleType, CrudConfig crudConfig) {
+        this.crudConfig = crudConfig;
+        this.moduleType = moduleType;
+        this.packageStr = crudConfig.getPackagePath();
     }
 
     @Override
     public CrudConfig getCrudConfig() {
+        return crudConfig;
+    }
+
+    @Override
+    public List<String> getTemplateLineList() {
         return null;
     }
 }

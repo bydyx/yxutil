@@ -8,6 +8,9 @@ import com.bydyx.yxutil.project.crud.template.ModuleType;
 import com.bydyx.yxutil.project.crud.template.Template;
 import com.bydyx.yxutil.project.crud.template.TemplateFactory;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * SSM自动生成CRUD模板工具
@@ -18,20 +21,36 @@ import com.bydyx.yxutil.project.crud.template.TemplateFactory;
 public class AutomationCrudUtil {
 
     public static void main(String[] args) {
+        AutomationCrudUtil automationCrudUtil = new AutomationCrudUtil();
+        List<ModuleType> moduleTypeList = automationCrudUtil.getModuleTypeList();
+        CrudConfig crudConfig = automationCrudUtil.getCrudConfig();
+        automationCrudUtil.autoCreateCrud(crudConfig, moduleTypeList);
+    }
+
+    private CrudConfig getCrudConfig() {
         DataBaseConfig dataBaseConfig = DataBaseConfig.pgSqlConfig("sdm", "postgres", "hnhsoft2828", "192.168.100.181");
         dataBaseConfig.setSchema("alc_tenant_hvactest");
+
         CrudConfig crudConfig = new CrudConfig(dataBaseConfig, "com.test");
         crudConfig.setProjectUrl("C:\\Users\\450s\\Desktop\\test");
-
-        new AutomationCrudUtil().autoCreateCrud(crudConfig);
+        return crudConfig;
     }
 
-    public void autoCreateCrud(CrudConfig crudConfig) {
-        createController(crudConfig);
+    private List<ModuleType> getModuleTypeList() {
+        List<ModuleType> moduleTypeList = new ArrayList<>();
+        moduleTypeList.add(ModuleType.controller);
+        return moduleTypeList;
     }
 
-    private void createController(CrudConfig crudConfig) {
-        Template template = TemplateFactory.getFileTemplate(ModuleType.controller,crudConfig);
-        FileUtil.createAndWriteFile(template.getPath(),template.getFileName(),template.getTemplateLineList());
+    public void autoCreateCrud(CrudConfig crudConfig, List<ModuleType> moduleTypeList) {
+        moduleTypeList.forEach(moduleType -> createFile(moduleType,crudConfig));
+    }
+
+    private void createFile(ModuleType moduleType, CrudConfig crudConfig) {
+        Template template = TemplateFactory.getFileTemplate(moduleType, crudConfig);
+        template.getPath();
+        template.getFileName();
+        template.getTemplateLineList();
+        FileUtil.createAndWriteFile();
     }
 }

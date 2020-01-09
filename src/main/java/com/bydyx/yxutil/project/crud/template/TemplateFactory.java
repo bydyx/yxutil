@@ -7,15 +7,17 @@ package com.bydyx.yxutil.project.crud.template;
 public class TemplateFactory {
 
     public static Template getFileTemplate(ModuleType type, CrudConfig crudConfig) {
-        switch (type) {
-            case controller:
-                return getControllerTemplate(crudConfig);
+        switch (type.getFileType()) {
+            case CLASS:
+                return getClassFileTemplate(type, crudConfig);
+            case INTERFACE:
+            case XML:
         }
         return null;
     }
 
-    private static Template getControllerTemplate(CrudConfig crudConfig) {
-        ClassFileTemplate classFileTemplate = new ClassFileTemplate();
+    private static Template getClassFileTemplate(ModuleType type, CrudConfig crudConfig) {
+        ClassFileTemplate classFileTemplate = new ClassFileTemplate(type,crudConfig);
         return classFileTemplate;
     }
 }

@@ -37,13 +37,11 @@ public class CrudConfig {
     //是否使用lomBook @Data自动生成getter&&setter
     boolean isUseLomBook;
 
-    ModuleType moduleType;
-
     public String getPath() {
         return getPackagePath();
     }
 
-    public String getFileName() {
+    public String getFileName(ModuleType moduleType) {
         return StringUtil.firstLetterLowerCase(modelName) + moduleType.getSuffix();
     }
 
