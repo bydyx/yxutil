@@ -30,7 +30,8 @@ public class StringUtil {
 
     /**
      * 都为空->true
-     * @date   2019/12/2 15:26
+     *
+     * @date 2019/12/2 15:26
      * @author qiang.feng
      */
     public static boolean isBlankAnd(String... strs) {
@@ -41,9 +42,11 @@ public class StringUtil {
         }
         return true;
     }
+
     /**
      * 有一个为空->true
-     * @date   2019/12/2 15:26
+     *
+     * @date 2019/12/2 15:26
      * @author qiang.feng
      */
     public static boolean isBlankOr(String... strs) {
@@ -136,6 +139,18 @@ public class StringUtil {
         return str;
     }
 
+    public static String firstLetterLowerCase(String str) {
+        char[] ch = str.toCharArray();
+        if (ch[0] >= 'a' && ch[0] <= 'z') {
+            ch[0] = (char) (ch[0] + 32);
+        }
+        return new String(ch);
+    }
+
+    public static String clearUnderlineNoReplace(String str) {
+        return str.replaceAll("_", "");
+    }
+
     /**
      * if s1 > s2 1
      * else if s1 < s2 1
@@ -174,4 +189,20 @@ public class StringUtil {
     'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S',
     'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
     };
+
+    /**
+     * 检查字符串是否含有 params中的字符串
+     *
+     * @param targetStr 受检字符串
+     * @param params    是否含有的字符串
+     * @return 只要有一个符合条件就返回true
+     */
+    public static boolean indexOfOr(String targetStr, String... params) {
+        for (final String param : params) {
+            if (targetStr.indexOf(param) != -1) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -19,7 +19,8 @@ public class DataBaseConfig {
     public DataBaseConfig mySqlConfig(String dataBaseName, String userName, String passWord, String dataBaseUrl) {
         return new DataBaseConfig(DataBaseType.MYSQL, dataBaseName, userName, passWord, dataBaseUrl);
     }
-    public static DataBaseConfig pgSqlConfig(String dataBaseName, String userName, String passWord, String dataBaseUrl){
+
+    public static DataBaseConfig pgSqlConfig(String dataBaseName, String userName, String passWord, String dataBaseUrl) {
         return new DataBaseConfig(DataBaseType.PGSQL, dataBaseName, userName, passWord, dataBaseUrl);
     }
 
@@ -32,10 +33,19 @@ public class DataBaseConfig {
     }
 
     public String getUrl() {
-        return dataBaseType.jdbcUrlPrefix + "://" + dataBaseUrl + ":" + port + "/" + dataBaseName + "?useUnicode=true&characterEncoding=utf-8";
+        return dataBaseType.jdbcUrlPrefix + "://" + dataBaseUrl + ":" + getPort() + "/" + dataBaseName + "?useUnicode=true&characterEncoding=utf-8";
     }
 
     public String getDriver() {
         return dataBaseType.getDriverUrl();
+    }
+
+    public Integer getPort() {
+        return port == null ? dataBaseType.port : port;
+    }
+
+    // 数据库的数据类型映射
+    public Class dataTypeMap(String dbType) {
+        return dataBaseType.dataTypeMap(dbType);
     }
 }

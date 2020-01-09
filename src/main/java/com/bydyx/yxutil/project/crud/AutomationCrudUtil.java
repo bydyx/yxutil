@@ -1,6 +1,13 @@
 package com.bydyx.yxutil.project.crud;
 
-import lombok.Data;
+
+import com.bydyx.yxutil.database.jdbc.DataBaseConfig;
+import com.bydyx.yxutil.file.FileUtil;
+import com.bydyx.yxutil.project.crud.template.CrudConfig;
+import com.bydyx.yxutil.project.crud.template.ModuleType;
+import com.bydyx.yxutil.project.crud.template.Template;
+import com.bydyx.yxutil.project.crud.template.TemplateFactory;
+
 
 /**
  * SSM自动生成CRUD模板工具
@@ -8,31 +15,23 @@ import lombok.Data;
  * @author qiang.feng
  * @date 2020/1/8 11:04
  */
-@Data
 public class AutomationCrudUtil {
-    // 数据库信息
-    String dataBaseUrl;
-    String tableName;
-    String dbUserName;
-    String dbPassWord;
 
-    // 项目根目录
-    String projectUrl;
-    String controllerUrl;
-    String serviceUrl;
-    String daoUrl;
-    String entityUrl;
-    String mapperUrl;
-    String mapperXmlUrl;
-    // {modelName}Controller,{modelName}Dao.....
-    String modelName;
+    public static void main(String[] args) {
+        DataBaseConfig dataBaseConfig = DataBaseConfig.pgSqlConfig("sdm", "postgres", "hnhsoft2828", "192.168.100.181");
+        dataBaseConfig.setSchema("alc_tenant_hvactest");
+        CrudConfig crudConfig = new CrudConfig(dataBaseConfig, "com.test");
+        crudConfig.setProjectUrl("C:\\Users\\450s\\Desktop\\test");
 
-    //是否使用lomBook @Data自动生成getter&&setter
-    boolean isUseLomBook;
-
-    public void autoCreateCrud() {
-
-        return;
+        new AutomationCrudUtil().autoCreateCrud(crudConfig);
     }
 
+    public void autoCreateCrud(CrudConfig crudConfig) {
+        createController(crudConfig);
+    }
+
+    private void createController(CrudConfig crudConfig) {
+        Template template = TemplateFactory.getFileTemplate(ModuleType.controller,crudConfig);
+        FileUtil.createAndWriteFile(template.getPath(),template.getFileName(),template.getTemplateLineList());
+    }
 }

@@ -1,6 +1,9 @@
 package com.bydyx.yxutil.database.jdbc;
 
+import com.bydyx.yxutil.string.StringUtil;
 import lombok.Getter;
+
+import java.util.Date;
 
 /**
  * @author qiang.feng
@@ -19,5 +22,32 @@ public enum DataBaseType {
         this.port = port;
         this.driverUrl = driverUrl;
         this.jdbcUrlPrefix = jdbcUrlPrefix;
+    }
+
+    public Class dataTypeMap(String dbType) {
+        switch (this) {
+            case MYSQL:
+                return null;
+            case PGSQL:
+                return getPgSqlDataTypeMap(dbType);
+            default:
+                return null;
+        }
+    }
+
+    public Class getPgSqlDataTypeMap(String dbType) {
+        if (StringUtil.indexOfOr(dbType, "int")) {
+            return Integer.class;
+        }
+        if (StringUtil.indexOfOr(dbType, "float", "numeric")) {
+            return Double.class;
+        }
+        if (StringUtil.indexOfOr(dbType, "varchar", "text")) {
+            return String.class;
+        }
+        if (StringUtil.indexOfOr(dbType, "timestamp", "date")) {
+            return Date.class;
+        }
+        throw new RuntimeException("出现未捕获的数据类型:" + dbType);
     }
 }
