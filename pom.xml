@@ -14,6 +14,7 @@
         <dom4j.version>1.6.1</dom4j.version>
         <guava.version>28.0-jre</guava.version>
         <lombok.version>1.18.10</lombok.version>
+        <slf4j.version>1.7.25</slf4j.version>
         <fastjosn.version>1.2.25</fastjosn.version>
     </properties>
 
@@ -58,6 +59,19 @@
             <artifactId>dom4j</artifactId>
             <version>${dom4j.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 
 </project>

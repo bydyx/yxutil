@@ -1,12 +1,17 @@
 package com.bydyx.yxutil.file;
 
+import com.bydyx.yxutil.project.crud.template.Template;
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.*;
+import java.util.Arrays;
 import java.util.List;
 
 /**
  * @author qiang.feng
  * @date 2020/1/9 9:55
  */
+@Slf4j
 public class FileUtil {
 
     /**
@@ -15,6 +20,13 @@ public class FileUtil {
     public static String getProjectPath() {
         File file = new File("");
         return file.getAbsolutePath();
+    }
+
+    public static void createAndWriteFile(Template template) {
+        String path = template.getPath();
+        String fileName = template.getFileName();
+        List<String> templateLineList = template.getTemplateLineList();
+        FileUtil.createAndWriteFile(path, fileName, templateLineList);
     }
 
     public static void createAndWriteFile(String path, String fileName, List<String> lines) {
@@ -33,6 +45,8 @@ public class FileUtil {
             checkFilePath(file);
             if (!file.exists()) {
                 file.createNewFile();
+            } else {
+                log.warn("路径:{} 下已经存在该文件:{} ", file.getPath(), file.getName());
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -52,10 +66,17 @@ public class FileUtil {
             for (String line : lines) {
                 byte[] bytes = line.getBytes();
                 bos.write(bytes);
-                bos.write("\\n".getBytes());
+                bos.write("\n".getBytes());
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String splicingPath(String... strS) {
+        return Arrays.asList(strS)
+                     .stream()
+                     .reduce((s, s2) -> s + File.separator + s2)
+                     .orElse("");
     }
 }

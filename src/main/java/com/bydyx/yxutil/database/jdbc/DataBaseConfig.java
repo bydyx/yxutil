@@ -14,6 +14,7 @@ public class DataBaseConfig {
     String dataBaseUrl;
     String schema;
     Integer port;
+    String tableName;
     DataBaseType dataBaseType;
 
     public DataBaseConfig mySqlConfig(String dataBaseName, String userName, String passWord, String dataBaseUrl) {

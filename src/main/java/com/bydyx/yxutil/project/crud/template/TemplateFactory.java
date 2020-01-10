@@ -6,18 +6,22 @@ package com.bydyx.yxutil.project.crud.template;
  */
 public class TemplateFactory {
 
-    public static Template getFileTemplate(ModuleType type, CrudConfig crudConfig) {
-        switch (type.getFileType()) {
-            case CLASS:
-                return getClassFileTemplate(type, crudConfig);
-            case INTERFACE:
-            case XML:
+    public static Template getFileTemplate(LayerType type, CrudConfig crudConfig) {
+        switch (type) {
+            case entity:
+                return getEntityTemplate(type, crudConfig);
         }
         return null;
     }
 
-    private static Template getClassFileTemplate(ModuleType type, CrudConfig crudConfig) {
-        ClassFileTemplate classFileTemplate = new ClassFileTemplate(type,crudConfig);
-        return classFileTemplate;
+    private static Template getEntityTemplate(LayerType type, CrudConfig crudConfig) {
+        ClassFileTemplate template = getClassFileTemplate(type, crudConfig);
+        return template;
+    }
+
+
+    private static ClassFileTemplate getClassFileTemplate(LayerType type, CrudConfig crudConfig) {
+        ClassFileTemplate template = new ClassFileTemplate(type, crudConfig);
+        return template;
     }
 }
