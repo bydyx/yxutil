@@ -1,6 +1,5 @@
 package com.bydyx.yxutil.file;
 
-import com.bydyx.yxutil.project.crud.template.Template;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
@@ -20,13 +19,6 @@ public class FileUtil {
     public static String getProjectPath() {
         File file = new File("");
         return file.getAbsolutePath();
-    }
-
-    public static void createAndWriteFile(Template template) {
-        String path = template.getPath();
-        String fileName = template.getFileName();
-        List<String> templateLineList = template.getTemplateLineList();
-        FileUtil.createAndWriteFile(path, fileName, templateLineList);
     }
 
     public static void createAndWriteFile(String path, String fileName, List<String> lines) {

@@ -10,6 +10,10 @@ import com.bydyx.yxutil.string.StringUtil;
  */
 public class JsonUtil {
 
+    public static String  toJSONString(Object object){
+        return JSON.toJSONString(object);
+    }
+
     public static String parseJsonStr(Object object) {
         return JSON.toJSONString(object);
     }

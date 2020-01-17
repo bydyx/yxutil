@@ -43,7 +43,7 @@ public class StringUtilTest {
     }
 
     @Test
-    public void testRandomStr32() throws Exception {
+    public void testFirstLetterLowerCase() throws Exception {
     }
 
     @Test

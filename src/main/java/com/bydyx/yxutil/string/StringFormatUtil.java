@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  */
 public class StringFormatUtil {
 
-	private static final Pattern pattern = Pattern.compile("\\{(.*?)\\}");
+	private static final Pattern pattern = Pattern.compile("#\\{(.*?)\\}");
 
 	/**
 	 * 格式化字符串 字符串中使用{key}表示占位符
@@ -149,7 +149,7 @@ public class StringFormatUtil {
 		} else if (varRepalcement.length() <= 2) {
 			varName = "";
 		} else {
-			varName = varRepalcement.substring(1, varRepalcement.length() - 1).trim();
+			varName = varRepalcement.substring(2, varRepalcement.length() - 1).trim();
 			validateVariableName(varName);
 		}
 

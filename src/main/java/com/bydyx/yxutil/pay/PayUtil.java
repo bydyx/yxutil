@@ -36,10 +36,9 @@ public class PayUtil {
 
     /**
      * 创建一个预下单的参数对象,若要传入特殊参数 可调用
-     * <p>
      * 参数详细可看微信文档: https://pay.weixin.qq.com/wiki/doc/api/index.html
      *
-     * @param initiatorIp 发起者ip 实际作用不明
+     * @param initiatorIp 发起者ip,微信预下单接口所需,实际作用不明
      * @param tradeType   交易类型,枚举
      * @param totalFee    支付金额,单位为分
      * @param body        商品信息,用于支付时的展示

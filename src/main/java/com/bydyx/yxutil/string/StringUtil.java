@@ -15,6 +15,16 @@ import java.util.UUID;
  */
 public class StringUtil {
 
+    /**
+     * 替换targetStr中的#{xxx}
+     *
+     * @param targetStr 格式: xxx#{xxx}xxx
+     * @param params    实体类对象|Map
+     */
+    public static String placeholderReplacement(String targetStr, Object params) {
+        return StringFormatUtil.format(targetStr, params);
+    }
+
     public static String createVerifyCode() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 4; i++) {
@@ -139,14 +149,26 @@ public class StringUtil {
         return str;
     }
 
-    public static String firstLetterLowerCase(String str) {
+    /**
+     * 首字母大写
+     */
+    public static String firstLetterUpperCase(String str) {
         char[] ch = str.toCharArray();
         if (ch[0] >= 'a' && ch[0] <= 'z') {
             ch[0] = (char) (ch[0] - 32);
         }
         return new String(ch);
     }
-
+    /**
+     * 首字母大写
+     */
+    public static String firstLowercase(String str) {
+        char[] ch = str.toCharArray();
+        if (ch[0] >= 'A' && ch[0] <= 'Z') {
+            ch[0] = (char) (ch[0] + 32);
+        }
+        return new String(ch);
+    }
     public static String clearUnderlineNoReplace(String str) {
         return str.replaceAll("_", "");
     }
