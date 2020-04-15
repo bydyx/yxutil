@@ -76,7 +76,8 @@ public class PayUtil {
      * @param fieldList getParams()的返回值
      */
     public static String createSign(Object payParam, List<Field> fieldList, String mchKey) {
-        return fieldList.stream().map(field -> field.getName() + "=" + ClassUtil.getFieldValue(field, payParam))
+        return fieldList.stream()
+                        .map(field -> field.getName() + "=" + ClassUtil.getFieldValue(field, payParam))
                         .reduce((perv, curr) -> perv + "&" + curr)
                         .map(str -> str + "&key=" + mchKey)
                         .map(StringUtil::md5)

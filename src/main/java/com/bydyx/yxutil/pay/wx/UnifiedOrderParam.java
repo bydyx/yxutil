@@ -150,7 +150,7 @@ public class UnifiedOrderParam implements PayParam {
     public PayResult getResultObj(String resultStr) {
         UnifiedOrderResult result = XmlUtil.xmlStr2Json(resultStr).toJavaObject(UnifiedOrderResult.class);
         if (!result.isSuccess()) {
-            throw new PayRTException("预下单失败:"+result.getReturn_msg());
+            throw new PayRTException("预下单失败:"+result.getErrMsg());
         }
         return result;
     }

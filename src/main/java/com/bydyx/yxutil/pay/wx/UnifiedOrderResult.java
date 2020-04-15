@@ -36,7 +36,11 @@ public class UnifiedOrderResult implements PayResult {
 
     @Override
     public String getErrMsg() {
-        return return_msg + err_code + err_code_des;
+        return "{" +
+        "\"return_msg\":\"" + return_msg +
+        "\",\"err_code\":\"" + err_code +
+        "\",\"err_code_des\":\"" + err_code_des +
+        "\"}";
     }
 
     @Override

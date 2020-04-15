@@ -8,6 +8,7 @@ import com.bydyx.yxutil.param.exception.ParamWrongException;
 import com.bydyx.yxutil.reflex.FieldUtil;
 
 import java.lang.reflect.Field;
+import java.util.List;
 
 /**
  * @author bydyx
@@ -54,11 +55,19 @@ public class ParamUtil {
         }
     }
 
+    public static void checkListItemNull(List list) {
+        list.stream().forEach(ParamUtil::checkObjNotNull);
+    }
+
     public static void checkObjIsNull(Object... objs) {
         for (final Object obj : objs) {
-            if (obj == null) {
-                throw new ParamWrongException();
-            }
+            checkObjNotNull(obj);
+        }
+    }
+
+    public static void checkObjNotNull(Object obj) {
+        if (obj == null) {
+            throw new ParamWrongException();
         }
     }
 
