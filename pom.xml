@@ -10,7 +10,7 @@
 
     <properties>
         <jwt.version>3.2.0</jwt.version>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <dom4j.version>1.6.1</dom4j.version>
         <guava.version>28.0-jre</guava.version>
         <lombok.version>1.18.10</lombok.version>
