@@ -30,6 +30,14 @@ public class ReflexUtil {
 			if (typeArgument.getTypeName().equals(parentClass.getName())) {
 				return true;
 			}
+			try {
+				Class<?> clazz = Class.forName(typeArgument.getTypeName());
+				if (ReflexUtil.isImplInterface(clazz, parentClass)) {
+					return true;
+				}
+			} catch (ClassNotFoundException e) {
+				return false;
+			}
 		}
 		return false;
 	}
