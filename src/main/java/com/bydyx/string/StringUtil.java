@@ -83,6 +83,12 @@ public class StringUtil {
 		return source.replaceFirst(firstChar, s);
 	}
 
+	public static String firstCharToUp(String source) {
+		String firstChar = getFirstChar(source);
+		String s = firstChar.toUpperCase(Locale.ROOT);
+		return source.replaceFirst(firstChar, s);
+	}
+
 	public static boolean charIsLast(String str, String chars) {
 		int index = str.lastIndexOf(chars);
 		return index == str.length() - chars.length();
