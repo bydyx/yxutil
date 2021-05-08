@@ -5,7 +5,9 @@ import com.bydyx.string.PrintUtil;
 import com.bydyx.string.StringUtil;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -20,15 +22,20 @@ public class FileWriteUtil {
 
 	public static void write(String filePath, String fileName, List<String> lineList) {
 		String path = StringUtil.concatPath(filePath, fileName);
+		File file = new File(filePath);
+		if (!file.exists()) {
+			file.mkdirs();
+		}
 		try (
 			BufferedWriter writer = new BufferedWriter(new FileWriter(path))
 		) {
+
 			for (final String line : lineList) {
 				writer.write(line);
 				writer.newLine();
 			}
 		} catch (Exception e) {
-			PrintUtil.print("写入文件失败 文件目录:{} 错误日志:{}", path, e);
+			throw new RuntimeException(PrintUtil.print("写入文件失败 文件目录:{} \n错误日志:{}", path, e));
 		}
 	}
 }

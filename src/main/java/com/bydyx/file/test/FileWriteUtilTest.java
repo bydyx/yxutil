@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class FileWriteUtilTest {
 	public static void main(String[] args) {
-		String filePath = "/Users/fqy/Desktop/项目/lazyCode/test/";
+		String filePath = "/Users/fqy/dev/project/java/backstage/src/test/java/lazyCode/com/fqy/model/entity/lc/UsersEnt.java";
 		String fileName = "xx.txt";
 		List<String> list = new ArrayList<String>() {{
 			add("httt");
