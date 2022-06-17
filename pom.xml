@@ -11,7 +11,7 @@
     <properties>
         <lombok-version>1.18.8</lombok-version>
         <commons-lang3-version>3.4</commons-lang3-version>
-        <fastjson-version>1.2.73</fastjson-version>
+        <fastjson-version>1.2.83</fastjson-version>
         <bcprov-version>1.46</bcprov-version>
     </properties>
 
